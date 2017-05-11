@@ -22,6 +22,38 @@ var bot = new builder.UniversalBot(connector, function (session) {
     session.send('Sorry, I did not understand \'%s\'. Type \'help\' if you need assistance.', session.message.text);
 });
 
+if (reply.ChannelId.Equals("facebook", StringComparison.InvariantCultureIgnoreCase))
+{
+    var channelData = JObject.FromObject(new
+    {
+        quick_replies = new dynamic[]
+        {
+            new
+            {
+                content_type = "text",
+                title = "Blue",
+                payload = "DEFINED_PAYLOAD_FOR_PICKING_BLUE",
+                image_url = "https://cdn3.iconfinder.com/data/icons/developperss/PNG/Blue%20Ball.png"
+            },
+            new
+            {
+                content_type = "text",
+                title = "Green",
+                payload = "DEFINED_PAYLOAD_FOR_PICKING_GREEN",
+                image_url = "https://cdn3.iconfinder.com/data/icons/developperss/PNG/Green%20Ball.png"
+            },
+            new
+            {
+                content_type = "text",
+                title = "Red",
+                payload = "DEFINED_PAYLOAD_FOR_PICKING_RED",
+            }
+        }
+    });
+
+    reply.ChannelData = channelData;
+}
+
 // You can provide your own model by specifing the 'LUIS_MODEL_URL' environment variable
 // This Url can be obtained by uploading or creating your model from the LUIS portal: https://www.luis.ai/
 var recognizer = new builder.LuisRecognizer(process.env.LUIS_MODEL_URL);
