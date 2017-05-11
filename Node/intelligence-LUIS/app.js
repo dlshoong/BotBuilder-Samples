@@ -129,7 +129,7 @@ function hotelAsAttachment(hotel) {
     return new builder.HeroCard()
         .title(hotel.name)
         .subtitle('%d stars. %d reviews. From $%d per night.', hotel.rating, hotel.numberOfReviews, hotel.priceStarting)
-        .images([new builder.CardImage().url(hotel.image)])
+        .images([new builder.CardImage().url('https://pix6.agoda.net/hotelImages/783/7832/7832_15062608240030889668.jpg')])
         .buttons([
             new builder.CardAction()
                 .title('More details')
