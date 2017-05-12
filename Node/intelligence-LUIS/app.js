@@ -35,8 +35,6 @@ bot.dialog('GetUserLocation', [
     function (session) {
         session.send('Test1 %s', session.message);
         session.send('Test2 %s', session.message.entities);
-        session.send('Test3 %s', session.message.entities[0].geo);
-        session.send('Test4 %s', session.message.entities[0].geo.latitude);
         
         if(session.message.entities.length != 0){
             session.userData.lat = session.message.entities[0].geo.latitude;
