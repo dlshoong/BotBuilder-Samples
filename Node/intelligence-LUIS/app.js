@@ -23,7 +23,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
     session.send('Sorry, I did not understand \'%s\'. Type \'help\' if you need assistance.', session.message.text);
 });
 
-//bot.library(locationDialog.createLibrary("AoIXwifw968LLViPkgX0v7XlcUTAD_ZazxcurdjJ17RqU2vbcgFXdc0V8kXX-m74"));
+bot.library(locationDialog.createLibrary("AoIXwifw968LLViPkgX0v7XlcUTAD_ZazxcurdjJ17RqU2vbcgFXdc0V8kXX-m74"));
 
 // You can provide your own model by specifing the 'LUIS_MODEL_URL' environment variable
 // This Url can be obtained by uploading or creating your model from the LUIS portal: https://www.luis.ai/
