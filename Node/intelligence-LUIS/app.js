@@ -5,10 +5,7 @@ var builder = require('botbuilder');
 var restify = require('restify');
 var Store = require('./store');
 var spellService = require('./spell-service');
-
-//Location control
 var locationDialog = require('botbuilder-location');
-bot.library(locationDialog.createLibrary("BING_MAPS_API_KEY"));
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -25,6 +22,8 @@ server.post('/api/messages', connector.listen());
 var bot = new builder.UniversalBot(connector, function (session) {
     session.send('Sorry, I did not understand \'%s\'. Type \'help\' if you need assistance.', session.message.text);
 });
+
+bot.library(locationDialog.createLibrary("AoIXwifw968LLViPkgX0v7XlcUTAD_ZazxcurdjJ17RqU2vbcgFXdc0V8kXX-m74"));
 
 // You can provide your own model by specifing the 'LUIS_MODEL_URL' environment variable
 // This Url can be obtained by uploading or creating your model from the LUIS portal: https://www.luis.ai/
