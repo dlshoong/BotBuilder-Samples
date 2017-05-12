@@ -27,10 +27,10 @@ var bot = new builder.UniversalBot(connector, function (session) {
 var recognizer = new builder.LuisRecognizer(process.env.LUIS_MODEL_URL);
 bot.recognizer(recognizer);
 
-
 bot.dialog('GetUserLocation', [
     function (session, args){
         builder.Prompts.text(session, "Send me your current location.");
+          session.beginDialog('/profile');
     },
     function (session) {
         session.send('Test1 %s', session.message);
@@ -52,6 +52,16 @@ bot.dialog('GetUserLocation', [
 ]).triggerAction({
     matches: 'GetUserLocation'
 });
+
+bot.dialog('/profile', [
+    function (session) {
+        builder.Prompts.text(session, 'Hi! What is your name?');
+    },
+    function (session, results) {
+        session.userData.name = results.response;
+        session.endDialog();
+    }
+]);
 
 bot.dialog('SearchHotels', [
     function (session, args, next) {
