@@ -41,10 +41,7 @@ bot.dialog('GetUserLocation', [
         }
     }
 ]).triggerAction({
-    matches: 'GetUserLocation',
-    onInterrupted: function (session) {
-        session.send('Please provide you location.');
-    }
+    matches: 'GetUserLocation'
 });
 
 bot.dialog('SearchHotels', [
