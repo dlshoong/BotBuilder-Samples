@@ -27,7 +27,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 var recognizer = new builder.LuisRecognizer(process.env.LUIS_MODEL_URL);
 bot.recognizer(recognizer);
 
-bot.dialog('SearchHotels', [
+bot.dialog('GetUserLocation', [
     function (session, args){
         builder.Prompts.text(session, "Send me your current location.");
     },
@@ -41,10 +41,10 @@ bot.dialog('SearchHotels', [
         }
     }
 ]).triggerAction({
-    matches: 'SearchHotels'
+    matches: 'GetUserLocation'
 });
 
-bot.dialog('GetUserLocation', [
+bot.dialog('SearchHotels', [
     function (session, args, next) {
         session.send('xxxWelcome to the Hotels finder! We are analyzing your message: \'%s\'', session.message.text);
 
@@ -94,7 +94,7 @@ bot.dialog('GetUserLocation', [
             });
     }
 ]).triggerAction({
-    matches: 'GetUserLocation',
+    matches: 'SearchHotels',
     onInterrupted: function (session) {
         session.send('Please provide a destination');
     }
