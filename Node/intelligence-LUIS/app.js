@@ -38,6 +38,7 @@ bot.dialog('GetUserLocation', [
             session.endDialog();
         }else{
             session.endDialog("Sorry, I didn't get your location.");
+            session.endDialog();
         }
     }
 ]).triggerAction({
