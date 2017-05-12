@@ -35,7 +35,8 @@ bot.dialog('GetUserLocation', [
         session.send('Test1 %s', session.message);
         session.send('Test2 %s', session.message.entities);
         
-        var msg = session.message;
+   var bot = new builder.UniversalBot(connector, function (session) {
+    var msg = session.message;
     if (msg.attachments && msg.attachments.length > 0) {
      // Echo back attachment
      var attachment = msg.attachments[0];
@@ -49,6 +50,11 @@ bot.dialog('GetUserLocation', [
                 }
             ]
         });
+    } else {
+        // Echo back users text
+        session.send("You said: %s", session.message.text);
+    }
+});
     } else {
         // Echo back users text
         session.send("You said: %s", session.message.text);
@@ -68,6 +74,9 @@ bot.dialog('GetUserLocation', [
     }
 ]).triggerAction({
     matches: 'GetUserLocation'
+    onInterrupted: function (session) {
+        session.send('Please provide your location.');
+    }
 });
 
 bot.dialog('SearchHotels', [
