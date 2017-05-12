@@ -27,54 +27,17 @@ var bot = new builder.UniversalBot(connector, function (session) {
 var recognizer = new builder.LuisRecognizer(process.env.LUIS_MODEL_URL);
 bot.recognizer(recognizer);
 
-bot.dialog('/fbmessenger_getlocation', new builder.SimpleDialog((session, args) => {
-    
-    var initialRetryFlag = 3;
-    var retryFlag = session.dialogData.hasOwnProperty('maxRetryFlag') 
-    ? session.dialogData.maxRetryFlag : initialRetryFlag;
-    var entityList = session.message.entities;
-
-    if (session.dialogData.hasOwnProperty('maxRetryFlag') 
-    && Array.isArray(entityList) && entityList.length 
-    && entityList[0].geo) {
-
-        var latit = roundNumber(entityList[0].geo.latitude, 3);
-        var longit = roundNumber(entityList[0].geo.longitude, 3);
-
-        // you got the latitude and longitude values. 
-        // You can do the processing as per your requirement
-        session.send("Latitude : "+latit);
-        session.endDialog("Longitude : "+longit);
-    }
-    else if (retryFlag == 0) {
-        // max retryFlag, quit
-        session.endDialogWithResult({});
-    }
-    else {
-
-        var replyMsg = new builder.Message(session).text
-        ("Please share your location.");
-        replyMsg.sourceEvent({
-            facebook: {
-                quick_replies:
-                [{
-                    content_type: "location"
-                }]
-            }
-        });
-        session.send(replyMsg);
-
-        retryFlag -= 1;
-        session.dialogData.maxRetryFlag = retryFlag;
-    }
-}));
 
 bot.dialog('GetUserLocation', [
     function (session, args){
         builder.Prompts.text(session, "Send me your current location.");
-        session.beginDialog('/fbmessenger_getlocation');
     },
-  /*  function (session) {
+    function (session) {
+        session.send('Test1 %s', session.message);
+        session.send('Test2 %s', session.message.entities);
+        session.send('Test3 %s', session.message.entities[0].geo);
+        session.send('Test4 %s', session.message.entities[0].geo.latitude);
+        
         if(session.message.entities.length != 0){
             session.userData.lat = session.message.entities[0].geo.latitude;
             session.userData.lon = session.message.entities[0].geo.longitude;
@@ -85,7 +48,7 @@ bot.dialog('GetUserLocation', [
         }else{
             session.endDialog("Sorry, I didn't get your location. Type \'help\' if you need assistance.");
         }
-    }*/
+    }
 ]).triggerAction({
     matches: 'GetUserLocation'
 });
