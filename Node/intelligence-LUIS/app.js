@@ -35,10 +35,12 @@ bot.dialog('GetUserLocation', [
         if(session.message.entities.length != 0){
             session.userData.lat = session.message.entities[0].geo.latitude;
             session.userData.lon = session.message.entities[0].geo.longitude;
+        
+            session.send('User Location is %f %f',session.userData.lat, session.userData.lon );
+            
             session.endDialog();
         }else{
-            session.endDialog("Sorry, I didn't get your location.");
-            session.endDialog();
+            session.endDialog("Sorry, I didn't get your location. Type \'help\' if you need assistance.");
         }
     }
 ]).triggerAction({
