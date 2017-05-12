@@ -32,8 +32,8 @@ bot.dialog('GetUserLocation', [
         builder.Prompts.text(session, "Send me your current location.");
     },
     function (session) {
-        session.send('Test1 %@', session.message);
-        session.send('Test2 %@', session.message.entities);
+        session.send('Test1 %s', session.message);
+        session.send('Test2 %s', session.message.entities);
         
         var msg = session.message;
     if (msg.attachments && msg.attachments.length > 0) {
