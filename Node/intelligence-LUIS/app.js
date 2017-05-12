@@ -5,7 +5,7 @@ var builder = require('botbuilder');
 var restify = require('restify');
 var Store = require('./store');
 var spellService = require('./spell-service');
-var locationDialog = require('botbuilder-location');
+var locationDialog = require('./core/lib/botbuilder-location.js');
 
 // Setup Restify Server
 var server = restify.createServer();
