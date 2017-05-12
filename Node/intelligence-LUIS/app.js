@@ -46,7 +46,7 @@ bot.dialog('GetUserLocation', [
 
 bot.dialog('SearchHotels', [
     function (session, args, next) {
-        session.send('Welcome to the Hotels finder! We are analyzing your message: \'%s\'', session.message.text);
+        session.send('xxxWelcome to the Hotels finder! We are analyzing your message: \'%s\'', session.message.text);
 
         // try extracting entities
         var cityEntity = builder.EntityRecognizer.findEntity(args.intent.entities, 'builtin.geography.city');
