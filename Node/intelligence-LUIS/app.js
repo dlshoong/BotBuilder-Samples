@@ -5,7 +5,7 @@ var builder = require('botbuilder');
 var restify = require('restify');
 var Store = require('./store');
 var spellService = require('./spell-service');
-var locationDialog = require('./core/lib/botbuilder-location');
+//var locationDialog = require('./core/lib/botbuilder-location');
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -39,7 +39,7 @@ bot.dialog('GetUserLocation', [
             useNativeControl: true
         });
     },
-      function (session, results) {
+     function (session, results) {
         if (results.response) {
             var place = results.response;
             session.send(place.postalCode);
@@ -48,9 +48,7 @@ bot.dialog('GetUserLocation', [
             session.send("OK, I won't be looking for the hotels...");
         }
     }
-]).triggerAction({
-    matches: 'GetUserLocation'
-});
+]);
 
 bot.dialog('SearchHotels', [
     function (session, args, next) {
