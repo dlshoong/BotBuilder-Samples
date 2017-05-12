@@ -27,6 +27,21 @@ var bot = new builder.UniversalBot(connector, function (session) {
 var recognizer = new builder.LuisRecognizer(process.env.LUIS_MODEL_URL);
 bot.recognizer(recognizer);
 
+bot.dialog('GetUserLocation', [
+    function (session){
+        builder.Prompts.text(session, "Send me your current location.");
+    },
+    function (session) {
+        if(session.message.entities.length != 0){
+            session.userData.lat = session.message.entities[0].geo.latitude;
+            session.userData.lon = session.message.entities[0].geo.longitude;
+            session.endDialog();
+        }else{
+            session.endDialog("Sorry, I didn't get your location.");
+        }
+    }
+]);
+
 bot.dialog('SearchHotels', [
     function (session, args, next) {
         session.send('Welcome to the Hotels finder! We are analyzing your message: \'%s\'', session.message.text);
