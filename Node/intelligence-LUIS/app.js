@@ -32,12 +32,9 @@ bot.dialog('GetUserLocation', [
         builder.Prompts.text(session, "Send me your current location.");
     },
     function (session) {
-        session.send('Test1 %s', session.message);
-        session.send('Test2 %s', session.message.entities);
+        session.send('Test1 %@', session.message);
+        session.send('Test2 %@', session.message.entities);
         
-        session.beginDialog('/profile');
-        
-        /*
         if(session.message.entities.length != 0){
             session.userData.lat = session.message.entities[0].geo.latitude;
             session.userData.lon = session.message.entities[0].geo.longitude;
@@ -47,21 +44,11 @@ bot.dialog('GetUserLocation', [
             session.endDialog();
         }else{
             session.endDialog("Sorry, I didn't get your location. Type \'help\' if you need assistance.");
-        }*/
+        }
     }
 ]).triggerAction({
     matches: 'GetUserLocation'
 });
-
-bot.dialog('/profile', [
-    function (session) {
-        builder.Prompts.text(session, 'Hi! What is your name?');
-    },
-    function (session, results) {
-        session.userData.name = results.response;
-        session.endDialog();
-    }
-]);
 
 bot.dialog('SearchHotels', [
     function (session, args, next) {
