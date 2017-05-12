@@ -35,6 +35,26 @@ bot.dialog('GetUserLocation', [
         session.send('Test1 %@', session.message);
         session.send('Test2 %@', session.message.entities);
         
+        var msg = session.message;
+    if (msg.attachments && msg.attachments.length > 0) {
+     // Echo back attachment
+     var attachment = msg.attachments[0];
+        session.send({
+            text: "You sent:",
+            attachments: [
+                {
+                    contentType: attachment.contentType,
+                    contentUrl: attachment.contentUrl,
+                    name: attachment.name
+                }
+            ]
+        });
+    } else {
+        // Echo back users text
+        session.send("You said: %s", session.message.text);
+    }
+        
+        /*
         if(session.message.entities.length != 0){
             session.userData.lat = session.message.entities[0].geo.latitude;
             session.userData.lon = session.message.entities[0].geo.longitude;
@@ -44,7 +64,7 @@ bot.dialog('GetUserLocation', [
             session.endDialog();
         }else{
             session.endDialog("Sorry, I didn't get your location. Type \'help\' if you need assistance.");
-        }
+        }*/
     }
 ]).triggerAction({
     matches: 'GetUserLocation'
