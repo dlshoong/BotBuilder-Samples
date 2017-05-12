@@ -27,7 +27,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 var recognizer = new builder.LuisRecognizer(process.env.LUIS_MODEL_URL);
 bot.recognizer(recognizer);
 
-bot.dialog('GetUserLocation', [
+bot.dialog('/GetUserLocation', [
     function (session, args){
         builder.Prompts.text(session, "Send me your current location.");
     },
