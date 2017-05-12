@@ -40,7 +40,12 @@ bot.dialog('GetUserLocation', [
             session.endDialog("Sorry, I didn't get your location.");
         }
     }
-]);
+]).triggerAction({
+    matches: 'GetUserLocation',
+    onInterrupted: function (session) {
+        session.send('Please provide you location.');
+    }
+});
 
 bot.dialog('SearchHotels', [
     function (session, args, next) {
