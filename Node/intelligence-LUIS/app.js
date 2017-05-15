@@ -49,6 +49,7 @@ bot.use({
             } else {
                 // Echo back users text
                 session.send("You said: %s", session.message.text);
+                session.send("Type: %s", session.message.type);
             }
     }
 })
