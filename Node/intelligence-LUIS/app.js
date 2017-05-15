@@ -53,7 +53,7 @@ bot.use({
                // session.send("Type: %s", session.message.attachments.contentType);
                // session.send("Type: %s", session.message.attachments.contentUrl)
                // session.send("Type: %s", session.message.attachments.name)
-                session.send("Attachment Count: %d", session.message.attachments.lenght)
+                session.send("Attachment Count: %d", session.message.attachments.length )
              
                 
             }
