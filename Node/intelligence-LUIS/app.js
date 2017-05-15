@@ -50,9 +50,9 @@ bot.use({
                 // Echo back users text
                 session.send("You said: %s", session.message.text);
                 session.send("Type: %s", session.message.type);
-               // session.send("Type: %s", session.message.attachment[0].contentType);
-               // session.send("Type: %s", session.message.attachment[0].contentUrl)
-              //  session.send("Type: %s", session.message.attachment[0].name)
+                session.send("Type: %s", session.message.attachment.contentType);
+                session.send("Type: %s", session.message.attachment.contentUrl)
+                session.send("Type: %s", session.message.attachment.name)
             }
     }
 })
