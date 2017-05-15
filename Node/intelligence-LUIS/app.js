@@ -31,7 +31,14 @@ var bot = new builder.UniversalBot(connector);
 bot.use({
     botbuilder: function (session, next) {
        // myMiddleware.logIncomingMessage(session, next);
-            session.send('Intercepted - Welcome to the Hotels finder! \'%s\'', session.message.text);
+           session.send('Intercepted - Welcome to the Hotels finder! \'%s\'', session.message.text);
+           session.send("Type: %s", session.message.type);
+           // session.send("Type: %s", session.message.attachments.contentType);
+           // session.send("Type: %s", session.message.attachments.contentUrl)
+           // session.send("Type: %s", session.message.attachments.name)
+           session.send("Attachment Count: %d", session.message.attachments.length )
+        
+        
             var msg = session.message;
             if (msg.attachments && msg.attachments.length > 0) {
              // Echo back attachment
@@ -48,14 +55,7 @@ bot.use({
                 });
             } else {
                 // Echo back users text
-                session.send("You said: %s", session.message.text);
-                session.send("Type: %s", session.message.type);
-               // session.send("Type: %s", session.message.attachments.contentType);
-               // session.send("Type: %s", session.message.attachments.contentUrl)
-               // session.send("Type: %s", session.message.attachments.name)
-                session.send("Attachment Count: %d", session.message.attachments.length )
-             
-                
+                session.send("You said: %s", session.message.text);                           
             }
     }
 })
