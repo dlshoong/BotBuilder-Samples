@@ -50,20 +50,11 @@ bot.use({
                 // Echo back users text
                 session.send("You said: %s", session.message.text);
                 session.send("Type: %s", session.message.type);
-               // session.send("Type: %s", session.message.attachment.contentType);
-               // session.send("Type: %s", session.message.attachment.contentUrl)
-               // session.send("Type: %s", session.message.attachment.name)
-                 var attachment = msg.attachments[0];
-        session.send({
-            text: "You sent:",
-            attachments: [
-                {
-                    contentType: attachment.contentType,
-                    contentUrl: attachment.contentUrl,
-                    name: attachment.name
-                }
-            ]
-        });
+               // session.send("Type: %s", session.message.attachments.contentType);
+               // session.send("Type: %s", session.message.attachments.contentUrl)
+               // session.send("Type: %s", session.message.attachments.name)
+                session.send("Attachment Count: %d", session.message.attachments.lenght)
+             
                 
             }
     }
