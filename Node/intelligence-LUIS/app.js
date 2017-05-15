@@ -32,9 +32,6 @@ bot.use({
     botbuilder: function (session, next) {
        // myMiddleware.logIncomingMessage(session, next);
              session.send('Intercepted - Welcome to the Hotels finder! \'%s\'', session.message.text);
-    },
-    send: function (event, next) {
-       // myMiddleware.logOutgoingMessage(event, next);
     }
 })
 
