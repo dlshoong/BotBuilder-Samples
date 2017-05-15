@@ -26,6 +26,18 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
 //bot.library(locationDialog.createLibrary("AoIXwifw968LLViPkgX0v7XlcUTAD_ZazxcurdjJ17RqU2vbcgFXdc0V8kXX-m74"));
 
+server.post('/api/messages', connector.listen());
+var bot = new builder.UniversalBot(connector);
+bot.use({
+    botbuilder: function (session, next) {
+       // myMiddleware.logIncomingMessage(session, next);
+             session.send('Intercepted - Welcome to the Hotels finder! \'%s\'', session.message.text);
+    },
+    send: function (event, next) {
+       // myMiddleware.logOutgoingMessage(event, next);
+    }
+})
+
 // You can provide your own model by specifing the 'LUIS_MODEL_URL' environment variable
 // This Url can be obtained by uploading or creating your model from the LUIS portal: https://www.luis.ai/
 var recognizer = new builder.LuisRecognizer(process.env.LUIS_MODEL_URL);
@@ -41,7 +53,7 @@ bot.dialog('GetUserLocation', [
 
 bot.dialog('SearchHotels', [
     function (session, args, next) {
-        session.send('xxxWelcome to the Hotels finder! We are analyzing your message: \'%s\'', session.message.text);
+        session.send('Welcome to the Hotels finder! We are analyzing your message: \'%s\'', session.message.text);
 
         // try extracting entities
         var cityEntity = builder.EntityRecognizer.findEntity(args.intent.entities, 'builtin.geography.city');
