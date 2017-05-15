@@ -33,21 +33,7 @@ bot.recognizer(recognizer);
 
 bot.dialog('GetUserLocation', [
     function (session, args){
-       // builder.Prompts.text(session, "Send me your current location.");
-        locationDialog.getLocation(session, {
-            prompt: "What is your current postcode.",
-            requiredFields:locationDialog.LocationRequiredFields.postalCode,
-            useNativeControl: true
-        });
-    },
-     function (session, results) {
-        if (results.response) {
-            var place = results.response;
-            session.send(place.postalCode);
-        }
-        else {
-            session.send("OK, I won't be looking for the hotels...");
-        }
+        builder.Prompts.text(session, "Send me your current location.");
     }
 ]).triggerAction({
     matches: 'GetUserLocation'
@@ -127,8 +113,11 @@ bot.dialog('ShowHotelsReviews', function (session, args) {
 });
 
 bot.dialog('Help', function (session) {
-    session.endDialog('Hi! Try asking me things like \'search hotels in Kuala Lumpur\', \'search hotels near KUL airport\' or \'show me the reviews of The Bot Resort\'');
-}).triggerAction({
+    session.sendTyping();
+    setTimeout(function () {
+        session.endDialog('Hi! Try asking me things like \'search hotels in Kuala Lumpur\', \'search hotels near KUL airport\' or \'show me the reviews of The Bot Resort\'');
+    }, 3000);
+   }).triggerAction({
     matches: 'Help'
 });
 
