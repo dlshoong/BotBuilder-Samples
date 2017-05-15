@@ -49,7 +49,9 @@ bot.dialog('GetUserLocation', [
             session.send("OK, I won't be looking for the hotels...");
         }
     }
-]);
+]).triggerAction({
+    matches: 'GetUserLocation'
+});
 
 bot.dialog('SearchHotels', [
     function (session, args, next) {
