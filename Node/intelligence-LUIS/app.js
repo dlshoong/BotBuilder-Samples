@@ -7,6 +7,8 @@ var Store = require('./store');
 var spellService = require('./spell-service');
 //var locationDialog = require('./core/lib/botbuilder-location');
 //var locationDialog = require('./core/lib/spell-service');
+var locationDialog = require('botbuilder-location');
+bot.library(locationDialog.createLibrary("Ah5ynaNb_5KcIlxCvxrJKJkGIc6s6T5R60Hb4C4hI25nWTex5G_jH7ExBO86tlMi"));
 
 // Setup Restify Server
 var server = restify.createServer();
